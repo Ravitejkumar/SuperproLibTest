@@ -5,11 +5,14 @@ import android.content.Context
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import com.androidapp.videocalllib.ui.loading.SuperProActivity
-import com.androidapp.videocalllib.ui.loading.SuperProCallListener
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentActivity
+import com.androidapp.videocalllib.newInstance
+import com.androidapp.videocalllib.ui.loading.SuperproFragment.SuperProCallListener
+import com.androidapp.videocalllib.utils.AppConstants
 import com.example.superprolibtest.databinding.ActivityMainBinding
 
-class MainActivity : SuperProActivity(), SuperProCallListener {
+class MainActivity : AppCompatActivity() ,SuperProCallListener {
 
     private lateinit var binding: ActivityMainBinding
     private var toast: Toast? = null
@@ -18,18 +21,24 @@ class MainActivity : SuperProActivity(), SuperProCallListener {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setSupportActionBar(binding.toolbar)
         binding.btnJoinCall.setOnClickListener { view ->
-            val meetingId = binding.edittext1.text.toString()
-            val token = binding.edittext2.text.toString()
+            var meetingId = binding.edittext1.text.toString()
+            var token = binding.edittext2.text.toString()
 
             val imm: InputMethodManager =
                 getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(binding.root.windowToken, 0)
-
+             meetingId = "b11-4667-a7a";
+             token = "206f30f4-b6c2-4a37-ba84-c5ba7f60cdaa";
             if(meetingId.isNotEmpty() && token.isNotEmpty()){
-                setCallFrame(binding.callFrame)
-                startCall(meetingId, token, this@MainActivity)
+//
+                val bundle = Bundle()
+                bundle.putString(AppConstants.IntentConstants.SUPERPRO_MEETING_ID, meetingId)
+                bundle.putString(AppConstants.IntentConstants.SUPERPRO_TOKEN, token)
+
+                val fragment = newInstance(meetingId, token)
+                supportFragmentManager.beginTransaction().replace(binding.callFrame.id, fragment).commit()
+                fragment.setListener(this)
             } else {
                 Toast.makeText(this@MainActivity,"MeetingId or token is invalid.",Toast.LENGTH_LONG).show()
             }
