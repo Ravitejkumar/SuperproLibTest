@@ -7,7 +7,8 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
-import com.androidapp.videocalllib.newInstance
+import com.androidapp.videocalllib.startVideoCall
+import com.androidapp.videocalllib.ui.joiningSetup.HeadsetReceiver
 import com.androidapp.videocalllib.ui.loading.SuperproFragment.SuperProCallListener
 import com.androidapp.videocalllib.utils.AppConstants
 import com.example.superprolibtest.databinding.ActivityMainBinding
@@ -36,7 +37,7 @@ class MainActivity : AppCompatActivity() ,SuperProCallListener {
                 bundle.putString(AppConstants.IntentConstants.SUPERPRO_MEETING_ID, meetingId)
                 bundle.putString(AppConstants.IntentConstants.SUPERPRO_TOKEN, token)
 
-                val fragment = newInstance(meetingId, token)
+                val fragment = startVideoCall(meetingId, token)
                 supportFragmentManager.beginTransaction().replace(binding.callFrame.id, fragment).commit()
                 fragment.setListener(this)
             } else {

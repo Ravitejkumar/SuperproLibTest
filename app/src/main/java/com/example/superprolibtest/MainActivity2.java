@@ -36,7 +36,7 @@ public class MainActivity2 extends AppCompatActivity implements SuperproFragment
                 bundle.putString(AppConstants.IntentConstants.SUPERPRO_TOKEN,token);
 
                 FragmentManager fm = getSupportFragmentManager();
-                SuperproFragment fragment = SuperproKt.newInstance(meetingId,token);
+                SuperproFragment fragment = SuperproKt.startVideoCall(meetingId,token);
                 fm.beginTransaction().replace(binding.callFrame.getId(),fragment).commit();
                 fragment.setListener(MainActivity2.this);
             }
