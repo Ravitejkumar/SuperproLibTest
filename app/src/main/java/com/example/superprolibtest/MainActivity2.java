@@ -31,9 +31,9 @@ public class MainActivity2 extends AppCompatActivity implements SuperproFragment
                 String token = binding.edittext2.getText().toString();
                 meetingId = "b11-4667-a7a";
                 token = "206f30f4-b6c2-4a37-ba84-c5ba7f60cdaa";
-                Bundle bundle = new Bundle();
-                bundle.putString(AppConstants.IntentConstants.SUPERPRO_MEETING_ID, meetingId);
-                bundle.putString(AppConstants.IntentConstants.SUPERPRO_TOKEN,token);
+//                Bundle bundle = new Bundle();
+//                bundle.putString(AppConstants.IntentConstants.SUPERPRO_MEETING_ID, meetingId);
+//                bundle.putString(AppConstants.IntentConstants.SUPERPRO_TOKEN,token);
 
                 FragmentManager fm = getSupportFragmentManager();
                 SuperproFragment fragment = SuperproKt.startVideoCall(meetingId,token);

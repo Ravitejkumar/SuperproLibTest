@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import com.androidapp.videocalllib.startVideoCall
-import com.androidapp.videocalllib.ui.joiningSetup.HeadsetReceiver
 import com.androidapp.videocalllib.ui.loading.SuperproFragment.SuperProCallListener
 import com.androidapp.videocalllib.utils.AppConstants
 import com.example.superprolibtest.databinding.ActivityMainBinding
@@ -26,6 +25,7 @@ class MainActivity : AppCompatActivity() ,SuperProCallListener {
             var meetingId = binding.edittext1.text.toString()
             var token = binding.edittext2.text.toString()
 
+
             val imm: InputMethodManager =
                 getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(binding.root.windowToken, 0)
@@ -33,9 +33,9 @@ class MainActivity : AppCompatActivity() ,SuperProCallListener {
              token = "206f30f4-b6c2-4a37-ba84-c5ba7f60cdaa";
             if(meetingId.isNotEmpty() && token.isNotEmpty()){
 //
-                val bundle = Bundle()
-                bundle.putString(AppConstants.IntentConstants.SUPERPRO_MEETING_ID, meetingId)
-                bundle.putString(AppConstants.IntentConstants.SUPERPRO_TOKEN, token)
+//                val bundle = Bundle()
+//                bundle.putString(AppConstants.IntentConstants.SUPERPRO_MEETING_ID, meetingId)
+//                bundle.putString(AppConstants.IntentConstants.SUPERPRO_TOKEN, token)
 
                 val fragment = startVideoCall(meetingId, token)
                 supportFragmentManager.beginTransaction().replace(binding.callFrame.id, fragment).commit()
