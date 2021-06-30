@@ -32,10 +32,6 @@ class MainActivity : AppCompatActivity() ,SuperProCallListener {
              meetingId = "b11-4667-a7a";
              token = "206f30f4-b6c2-4a37-ba84-c5ba7f60cdaa";
             if(meetingId.isNotEmpty() && token.isNotEmpty()){
-//
-//                val bundle = Bundle()
-//                bundle.putString(AppConstants.IntentConstants.SUPERPRO_MEETING_ID, meetingId)
-//                bundle.putString(AppConstants.IntentConstants.SUPERPRO_TOKEN, token)
 
                 val fragment = startVideoCall(meetingId, token)
                 supportFragmentManager.beginTransaction().replace(binding.callFrame.id, fragment).commit()
